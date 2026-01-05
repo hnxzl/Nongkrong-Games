@@ -1,0 +1,227 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply antialiased;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply font-body bg-slate-900 text-white min-h-screen;
+        /* Prevent pull-to-refresh on mobile */
+        overscroll-behavior-y: contain;
+    }
+
+    /* Prevent text selection on game elements */
+    .no-select {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
+@layer components {
+    /* Button Styles */
+    .btn {
+        @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-xl 
+               transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 
+               focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 
+               disabled:cursor-not-allowed no-select;
+    }
+
+    .btn-primary {
+        @apply btn bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500;
+    }
+
+    .btn-accent {
+        @apply btn bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500;
+    }
+
+    .btn-success {
+        @apply btn bg-green-500 text-white hover:bg-green-600 focus:ring-green-500;
+    }
+
+    .btn-danger {
+        @apply btn bg-red-500 text-white hover:bg-red-600 focus:ring-red-500;
+    }
+
+    .btn-ghost {
+        @apply btn bg-white/10 text-white hover:bg-white/20 focus:ring-white/50;
+    }
+
+    .btn-lg {
+        @apply px-8 py-4 text-lg;
+    }
+
+    .btn-sm {
+        @apply px-4 py-2 text-sm;
+    }
+
+    /* Card Styles */
+    .card {
+        @apply bg-slate-800/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-slate-700/50;
+    }
+
+    .card-game {
+        @apply bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 
+               shadow-2xl border border-slate-700/50;
+    }
+
+    /* Input Styles */
+    .input {
+        @apply w-full px-4 py-3 bg-slate-800/80 border border-slate-600 rounded-xl 
+               text-white placeholder-slate-400 focus:outline-none focus:ring-2 
+               focus:ring-primary-500 focus:border-transparent transition-all;
+    }
+
+    /* Game Room Code Input */
+    .input-code {
+        @apply text-center text-2xl font-bold tracking-[0.5em] uppercase;
+    }
+
+    /* Player Avatar */
+    .avatar {
+        @apply w-12 h-12 rounded-full bg-gradient-to-br from-primary-400 to-accent-500 
+               flex items-center justify-center text-white font-bold text-lg shadow-lg;
+    }
+
+    .avatar-sm {
+        @apply w-8 h-8 text-sm;
+    }
+
+    .avatar-lg {
+        @apply w-16 h-16 text-xl;
+    }
+
+    /* Badge Styles */
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .badge-primary {
+        @apply badge bg-primary-500/20 text-primary-300;
+    }
+
+    .badge-success {
+        @apply badge bg-green-500/20 text-green-300;
+    }
+
+    .badge-danger {
+        @apply badge bg-red-500/20 text-red-300;
+    }
+
+    .badge-warning {
+        @apply badge bg-yellow-500/20 text-yellow-300;
+    }
+
+    /* UNO Card Styles */
+    .uno-card {
+        @apply relative w-16 h-24 sm:w-20 sm:h-28 rounded-lg shadow-lg transition-all 
+               duration-200 cursor-pointer no-select;
+        transform-style: preserve-3d;
+    }
+
+    .uno-card:hover {
+        @apply -translate-y-2 shadow-xl;
+    }
+
+    .uno-card.selected {
+        @apply -translate-y-4 ring-2 ring-white ring-offset-2 ring-offset-slate-900;
+    }
+
+    .uno-card-red {
+        @apply bg-uno-red;
+    }
+
+    .uno-card-blue {
+        @apply bg-uno-blue;
+    }
+
+    .uno-card-green {
+        @apply bg-uno-green;
+    }
+
+    .uno-card-yellow {
+        @apply bg-uno-yellow;
+    }
+
+    .uno-card-black {
+        @apply bg-uno-black;
+    }
+
+    /* Timer Styles */
+    .timer {
+        @apply inline-flex items-center justify-center w-16 h-16 rounded-full 
+               bg-slate-800 border-4 border-primary-500 font-bold text-2xl;
+    }
+
+    .timer-warning {
+        @apply border-yellow-500 text-yellow-500 animate-pulse;
+    }
+
+    .timer-danger {
+        @apply border-red-500 text-red-500 animate-pulse-fast;
+    }
+
+    /* Toast/Notification */
+    .toast {
+        @apply fixed bottom-4 left-4 right-4 mx-auto max-w-sm p-4 rounded-xl 
+               shadow-2xl animate-slide-up z-50;
+    }
+
+    /* Mobile Safe Areas */
+    .safe-area-top {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Full Screen Game Container */
+    .game-container {
+        @apply min-h-screen flex flex-col safe-area-top safe-area-bottom;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+        @apply w-8 h-8 border-4 border-primary-500/30 border-t-primary-500 rounded-full animate-spin;
+    }
+}
+
+@layer utilities {
+    /* Hide scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Glass Effect */
+    .glass {
+        @apply bg-white/10 backdrop-blur-md;
+    }
+
+    /* Text Gradient */
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-accent-400;
+    }
+
+    /* Card Hand Container (horizontal scroll) */
+    .card-hand {
+        @apply flex gap-2 overflow-x-auto pb-2 px-4 snap-x snap-mandatory no-scrollbar;
+    }
+
+    .card-hand > * {
+        @apply snap-center flex-shrink-0;
+    }
+}
